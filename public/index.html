@@ -3,591 +3,756 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diaz Property Solutions</title>
+  <title>Diaz Property Solutions — Trusted Real Estate Solutions</title>
   <meta name="description" content="Diaz Property Solutions helps homeowners navigate difficult real estate situations with professionalism, honesty, and compassion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy: #1a2a4a;
-      --blue: #2563eb;
-      --blue-light: #3b82f6;
-      --gold: #d97706;
-      --gold-light: #f59e0b;
-      --cream: #fefce8;
-      --gray: #6b7280;
-      --light: #f8fafc;
-      --white: #ffffff;
+      --ink:        #0F172A;
+      --ink-mid:    #1E293B;
+      --gold:       #B8935A;
+      --gold-light: #D4A96A;
+      --gold-pale:  #F5E9D4;
+      --cream:      #F1EDE4;
+      --cream-light:#FAF8F5;
+      --muted:      #64748B;
+      --text:       #334155;
+      --white:      #FFFFFF;
+      --border:     rgba(184,147,90,0.2);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: #1f2937;
-      background: var(--white);
-      line-height: 1.6;
+      font-family: 'Outfit', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--cream-light);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ─── NAVIGATION ─── */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(26, 42, 74, 0.97);
-      backdrop-filter: blur(8px);
-      padding: 0 2rem;
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 1000;
+      padding: 0 3rem;
+      height: 72px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 70px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(15,23,42,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(184,147,90,0.2);
     }
 
     .nav-logo {
-      display: flex; align-items: center; gap: 0.75rem;
+      display: flex; align-items: center; gap: 0.85rem;
       text-decoration: none;
     }
 
-    .nav-logo img {
-      height: 48px; width: auto;
-      object-fit: contain;
-    }
+    .nav-logo img { height: 44px; width: auto; object-fit: contain; }
 
-    .nav-brand {
-      color: var(--white);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-    }
+    .nav-brand-text { line-height: 1.2; }
 
-    .nav-brand span {
+    .nav-brand-text strong {
       display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--white); letter-spacing: 0.02em;
+    }
+
+    .nav-brand-text em {
+      display: block; font-style: normal;
+      font-size: 0.65rem; font-weight: 400;
       color: var(--gold-light);
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      letter-spacing: 0.18em; text-transform: uppercase;
     }
 
     .nav-links {
-      display: flex; gap: 2rem; list-style: none;
+      display: flex; gap: 2.5rem; list-style: none;
     }
 
     .nav-links a {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+      transition: color 0.2s; position: relative;
     }
 
-    .nav-links a:hover { color: var(--gold-light); }
-
-    .nav-cta {
-      background: var(--gold);
-      color: var(--white) !important;
-      padding: 0.5rem 1.25rem;
-      border-radius: 6px;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: -3px; left: 0; width: 0; height: 1px;
+      background: var(--gold); transition: width 0.3s;
     }
 
-    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
 
-    /* HERO */
+    .nav-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: transparent;
+      border: 1px solid rgba(184,147,90,0.5);
+      color: var(--gold-light);
+      padding: 0.55rem 1.4rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.25s;
+    }
+
+    .nav-btn:hover {
+      background: var(--gold); border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--navy) 0%, #243b6e 60%, #1e3a5f 100%);
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
       position: relative;
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    .hero-grid {
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-image:
+        linear-gradient(rgba(184,147,90,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,147,90,0.055) 1px, transparent 1px);
+      background-size: 64px 64px;
+      animation: gridDrift 24s linear infinite;
     }
 
-    .hero-content { position: relative; max-width: 780px; }
-
-    .hero-logo {
-      width: min(280px, 70vw);
-      height: auto;
-      margin-bottom: 2rem;
-      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.3));
+    @keyframes gridDrift {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(64px); }
     }
 
-    .hero-tagline {
-      display: inline-block;
-      background: rgba(217, 119, 6, 0.2);
-      border: 1px solid rgba(245, 158, 11, 0.4);
+    .hero-bg-word {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(140px, 20vw, 280px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.022);
+      letter-spacing: -0.02em;
+      user-select: none; white-space: nowrap;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 110px;
+      background: var(--cream-light);
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      text-align: center;
+      padding: 8rem 2rem 11rem;
+      max-width: 860px;
+    }
+
+    .hero-logo-wrap { margin-bottom: 2.5rem; }
+
+    .hero-logo-wrap img {
+      width: min(240px, 60vw); height: auto;
+      filter: drop-shadow(0 0 48px rgba(184,147,90,0.28));
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: rgba(184,147,90,0.1);
+      border: 1px solid rgba(184,147,90,0.28);
       color: var(--gold-light);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      margin-bottom: 1.5rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.45rem 1.3rem; border-radius: 1px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge::before,
+    .hero-badge::after {
+      content: ''; width: 18px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6.5vw, 5.25rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
     }
 
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold-light);
-    }
+    .hero h1 em { font-style: italic; color: var(--gold-light); }
 
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(255,255,255,0.8);
-      max-width: 580px;
-      margin: 0 auto 2.5rem;
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      color: rgba(255,255,255,0.58);
+      max-width: 520px; margin: 0 auto 3rem;
+      font-weight: 300; line-height: 1.85;
     }
 
     .hero-actions {
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
     }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--gold);
-      color: var(--white);
-      padding: 0.9rem 2rem;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--gold); color: var(--ink);
+      padding: 1rem 2.25rem; border-radius: 2px;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
       text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      box-shadow: 0 4px 15px rgba(217,119,6,0.4);
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 0 0 rgba(184,147,90,0);
     }
 
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(184,147,90,0.32);
+    }
 
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.3);
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.78);
+      padding: 1rem 2.25rem; border-radius: 2px;
+      font-weight: 500; font-size: 0.85rem;
+      letter-spacing: 0.05em; text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.5);
       color: var(--white);
-      padding: 0.9rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
+      background: rgba(255,255,255,0.07);
     }
 
-    .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.6); }
-
-    /* TRUST BAR */
-    .trust-bar {
+    /* ─── MARQUEE TRUST BAR ─── */
+    .marquee-wrap {
       background: var(--gold);
-      padding: 1rem 2rem;
-      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+      overflow: hidden; padding: 0.9rem 0;
+      position: relative; z-index: 10;
     }
 
-    .trust-item {
-      display: flex; align-items: center; gap: 0.5rem;
-      color: var(--white);
-      font-weight: 600;
-      font-size: 0.9rem;
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marqueeScroll 26s linear infinite;
+      width: max-content;
     }
 
-    /* SECTION COMMON */
-    section { padding: 5rem 2rem; }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.75rem;
+    .marquee-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      color: var(--ink);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0 2.75rem; white-space: nowrap;
     }
 
-    .section-title {
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-      font-weight: 800;
-      color: var(--navy);
-      line-height: 1.2;
-      margin-bottom: 1rem;
+    .marquee-dot {
+      width: 5px; height: 5px;
+      background: rgba(15,23,42,0.35);
+      border-radius: 50%; flex-shrink: 0;
     }
 
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--gray);
-      max-width: 580px;
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    /* SERVICES */
-    .services { background: var(--light); }
+    /* ─── SECTION COMMONS ─── */
+    .section-inner { max-width: 1140px; margin: 0 auto; padding: 0 2rem; }
 
-    .services-header { text-align: center; margin-bottom: 3rem; }
-    .services-header .section-sub { margin: 0 auto; }
+    .eyebrow {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+
+    .eyebrow::before {
+      content: ''; width: 28px; height: 1px;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    .display-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 600; color: var(--ink);
+      line-height: 1.15; letter-spacing: -0.01em;
+    }
+
+    .lead {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.8; max-width: 520px;
+    }
+
+    /* ─── SERVICES ─── */
+    .services {
+      padding: 7rem 0;
+      background: var(--cream-light);
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .services-sticky {
+      position: sticky; top: 100px;
+    }
+
+    .services-sticky .display-heading { margin-bottom: 1.25rem; }
+    .services-sticky .lead { margin-bottom: 2.25rem; }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: rgba(184,147,90,0.1);
     }
 
     .service-card {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      border-top: 4px solid transparent;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      background: var(--cream-light);
+      padding: 2.25rem;
+      transition: background 0.3s;
+      position: relative;
     }
 
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      border-top-color: var(--gold);
+    .service-card:hover { background: var(--white); }
+
+    .service-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 700;
+      color: rgba(184,147,90,0.13);
+      line-height: 1; margin-bottom: 1rem;
+      transition: color 0.3s;
     }
 
-    .service-icon {
-      width: 52px; height: 52px;
-      background: linear-gradient(135deg, var(--navy), var(--blue));
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
-      font-size: 1.5rem;
+    .service-card:hover .service-card-num { color: rgba(184,147,90,0.28); }
+
+    .service-line {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1rem;
     }
 
     .service-card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.75rem;
+      letter-spacing: 0.01em;
     }
 
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--gray);
-      line-height: 1.6;
+    .service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding: 7rem 0;
+      background: var(--ink);
+      position: relative; overflow: hidden;
     }
 
-    /* HOW IT WORKS */
-    .how { background: var(--white); }
+    .how::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(184,147,90,0.055) 0%, transparent 58%);
+    }
 
-    .how-grid {
+    .how-header { max-width: 480px; margin-bottom: 4.5rem; }
+    .how-header .eyebrow { color: var(--gold); }
+    .how-header .display-heading { color: var(--white); margin-bottom: 1rem; }
+    .how-header .lead { color: rgba(255,255,255,0.48); }
+
+    .how-steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-      position: relative;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0; position: relative;
     }
 
-    .step {
-      text-align: center;
-      padding: 1.5rem;
-    }
-
-    .step-num {
-      width: 60px; height: 60px;
-      background: var(--navy);
-      color: var(--white);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin: 0 auto 1.25rem;
-      position: relative;
-    }
-
-    .step-num::after {
+    .how-steps::before {
       content: '';
       position: absolute;
-      width: 70px; height: 70px;
-      border: 2px dashed rgba(26,42,74,0.2);
+      top: 27px; left: 28px; right: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), rgba(184,147,90,0.15));
+      z-index: 0;
+    }
+
+    .step { padding: 0 2rem 0 0; position: relative; z-index: 1; }
+
+    .step-marker {
+      width: 56px; height: 56px;
+      border: 1px solid rgba(184,147,90,0.3);
       border-radius: 50%;
-      top: -5px; left: -5px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 2rem;
+      background: var(--ink);
+      transition: all 0.3s;
+    }
+
+    .step:hover .step-marker {
+      border-color: var(--gold);
+      background: rgba(184,147,90,0.1);
+    }
+
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--gold);
     }
 
     .step h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.75rem;
     }
 
-    .step p { font-size: 0.875rem; color: var(--gray); }
+    .step p { font-size: 0.85rem; color: rgba(255,255,255,0.44); line-height: 1.75; }
 
-    /* WHY US */
-    .why { background: var(--navy); color: var(--white); }
+    /* ─── WHY US ─── */
+    .why { padding: 7rem 0; background: var(--cream); }
 
-    .why .section-title { color: var(--white); }
-    .why .section-label { color: var(--gold-light); }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .why-item {
-      padding: 1.5rem;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-    }
-
-    .why-item .num {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-
-    .why-item h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 0.4rem;
-    }
-
-    .why-item p { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
-
-    /* CONTACT */
-    .contact { background: var(--light); }
-
-    .contact-wrap {
+    .why-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
+      gap: 5rem; align-items: center;
     }
 
-    @media (max-width: 720px) {
-      .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .why-text .display-heading { margin-bottom: 1.25rem; }
+    .why-text .lead { margin-bottom: 2.5rem; }
+
+    .why-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: rgba(184,147,90,0.1);
     }
 
-    .contact-info h2 { margin-bottom: 1rem; }
-
-    .contact-detail {
-      display: flex; align-items: flex-start; gap: 1rem;
-      margin-bottom: 1.5rem;
+    .stat-block {
+      background: var(--cream);
+      padding: 2.5rem 2rem; text-align: center;
+      transition: background 0.3s;
     }
 
-    .contact-detail .icon {
-      width: 44px; height: 44px; flex-shrink: 0;
-      background: var(--navy);
-      border-radius: 10px;
+    .stat-block:hover { background: var(--white); }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.25rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 0.4rem; letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 0.4rem;
+    }
+
+    .stat-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* ─── CONTACT ─── */
+    .contact { padding: 7rem 0; background: var(--cream-light); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .contact-left .display-heading { margin-bottom: 1.25rem; }
+    .contact-left .lead { margin-bottom: 3rem; }
+
+    .contact-item {
+      display: flex; align-items: flex-start;
+      gap: 1.25rem; margin-bottom: 2rem;
+    }
+
+    .contact-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border: 1px solid var(--border); border-radius: 2px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
     }
 
-    .contact-detail strong { display: block; color: var(--navy); font-size: 0.85rem; margin-bottom: 0.15rem; }
-    .contact-detail span { color: var(--gray); font-size: 0.9rem; }
-    .contact-detail a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
-    .contact-detail a:hover { text-decoration: underline; }
+    .contact-item strong {
+      display: block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.35rem;
+    }
 
-    .contact-form {
+    .contact-item span,
+    .contact-item a {
+      font-size: 0.9rem; color: var(--text); text-decoration: none;
+    }
+
+    .contact-item a:hover { color: var(--gold); }
+
+    .contact-form-box {
       background: var(--white);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 3rem;
+      border: 1px solid rgba(184,147,90,0.15);
     }
 
-    .contact-form h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 1.5rem;
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--ink); margin-bottom: 0.4rem;
     }
 
-    .form-group { margin-bottom: 1rem; }
+    .form-subtitle { font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
 
-    label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 0.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .form-field { margin-bottom: 1.75rem; }
+
+    .form-field label {
+      display: block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--ink); margin-bottom: 0.6rem;
     }
 
-    input, select, textarea {
-      width: 100%;
-      padding: 0.7rem 0.9rem;
-      border: 1.5px solid #e5e7eb;
-      border-radius: 7px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: #1f2937;
-      background: var(--white);
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1.5px solid rgba(0,0,0,0.12);
+      padding: 0.6rem 0; font-size: 0.95rem;
+      font-family: 'Outfit', sans-serif; color: var(--ink);
+      outline: none; border-radius: 0;
+      transition: border-color 0.25s;
+      -webkit-appearance: none;
     }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--gold); }
 
-    textarea { resize: vertical; min-height: 100px; }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .form-field textarea { resize: none; min-height: 80px; }
 
     .btn-submit {
-      width: 100%;
-      background: var(--navy);
-      color: var(--white);
-      border: none;
-      padding: 0.9rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 0.5rem;
+      width: 100%; background: var(--ink); color: var(--white);
+      border: none; padding: 1.1rem;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      cursor: pointer; border-radius: 2px;
+      transition: background 0.25s;
+      font-family: 'Outfit', sans-serif;
     }
 
-    .btn-submit:hover { background: var(--blue); }
+    .btn-submit:hover { background: var(--gold); }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
-      background: #111827;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.85rem;
+      background: var(--ink);
+      border-top: 1px solid rgba(184,147,90,0.15);
+      padding: 2.5rem; text-align: center;
     }
 
-    footer strong { color: rgba(255,255,255,0.9); }
+    .footer-logo {
+      display: flex; align-items: center;
+      justify-content: center; gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
 
-    /* NAV MOBILE */
-    @media (max-width: 700px) {
+    .footer-logo img { height: 36px; width: auto; }
+
+    .footer-logo span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
+    .footer-copy strong { color: rgba(255,255,255,0.55); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition:
+        opacity 0.75s cubic-bezier(0.22,1,0.36,1),
+        transform 0.75s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .services-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .services-sticky { position: static; }
+      .why-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
       .nav-links { display: none; }
-      .nav-cta { display: none; }
+      .nav-btn { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .how-steps::before { display: none; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-box { padding: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .how-steps { grid-template-columns: 1fr; }
+      .why-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <!-- NAVIGATION -->
-<nav>
+<nav id="main-nav">
   <a href="#" class="nav-logo">
-    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions Logo" />
-    <div class="nav-brand">
-      Diaz Property Solutions
-      <span>Real Estate Solutions</span>
+    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions" />
+    <div class="nav-brand-text">
+      <strong>Diaz Property Solutions</strong>
+      <em>Real Estate Solutions</em>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#about">Why Us</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
   </ul>
+  <a href="#contact" class="nav-btn">Free Consultation</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-content">
-    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions" class="hero-logo" />
-    <div class="hero-tagline">Trusted Real Estate Solutions</div>
-    <h1>We Help Homeowners Find a <em>Path Forward</em></h1>
-    <p>Facing foreclosure, a distressed property, or a tough real estate situation? Diaz Property Solutions is here to help — with honesty, professionalism, and compassion.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
-      <a href="#services" class="btn-secondary">Explore Our Services</a>
+  <div class="hero-grid"></div>
+  <div class="hero-bg-word">DIAZ</div>
+  <div class="hero-inner">
+    <div class="hero-logo-wrap reveal">
+      <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions" />
+    </div>
+    <div class="hero-badge reveal d1">Trusted Real Estate Solutions</div>
+    <h1 class="reveal d2">We Help Homeowners Find<br>a <em>Path Forward</em></h1>
+    <p class="hero-sub reveal d3">Facing foreclosure, a distressed property, or a tough real estate situation? Diaz Property Solutions is here to help — with honesty, professionalism, and compassion.</p>
+    <div class="hero-actions reveal d4">
+      <a href="#contact" class="btn-gold">Get Free Consultation</a>
+      <a href="#services" class="btn-ghost">Explore Services</a>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item">✓ No Obligation Consultation</div>
-  <div class="trust-item">✓ Confidential &amp; Compassionate</div>
-  <div class="trust-item">✓ Creative Real Estate Solutions</div>
-  <div class="trust-item">✓ Experienced Local Professionals</div>
+<!-- MARQUEE TRUST BAR -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span>No Obligation Consultation</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Confidential &amp; Compassionate</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Creative Real Estate Solutions</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Experienced Local Professionals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>No Upfront Fees</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Fast &amp; Flexible Process</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>No Obligation Consultation</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Confidential &amp; Compassionate</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Creative Real Estate Solutions</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Experienced Local Professionals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>No Upfront Fees</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Fast &amp; Flexible Process</div>
+  </div>
 </div>
 
 <!-- SERVICES -->
 <section class="services" id="services">
-  <div class="container">
-    <div class="services-header">
-      <div class="section-label">What We Do</div>
-      <h2 class="section-title">Specialized Real Estate Services</h2>
-      <p class="section-sub">We work with homeowners in challenging situations to explore every available option and find the best path forward.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">🏠</div>
-        <h3>Foreclosure Assistance</h3>
-        <p>Facing foreclosure can feel overwhelming. We help you understand your options — from loan modifications to short sales — to protect your home and credit.</p>
+  <div class="section-inner">
+    <div class="services-layout">
+      <div class="services-sticky">
+        <div class="eyebrow reveal">What We Do</div>
+        <h2 class="display-heading reveal d1">Specialized Real Estate Services</h2>
+        <p class="lead reveal d2">We work with homeowners in challenging situations to explore every available option and find the best path forward.</p>
+        <a href="#contact" class="btn-gold reveal d3" style="margin-top:0.5rem; display:inline-flex;">Talk to Us Today</a>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3>Distressed Properties</h3>
-        <p>Inherited a property in disrepair? We purchase homes as-is, saving you the cost and stress of repairs or renovations before selling.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💡</div>
-        <h3>Creative Real Estate Solutions</h3>
-        <p>Not every situation fits a traditional sale. We offer flexible, customized approaches including lease-options, seller financing, and more.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🤝</div>
-        <h3>Homeowner Counseling</h3>
-        <p>Before making any decision, we sit down with you to understand your situation and lay out all your options — with no pressure and no obligation.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📋</div>
-        <h3>Short Sale Assistance</h3>
-        <p>When a home's value is less than the mortgage, a short sale may be your best option. We guide you through every step of the process.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🌟</div>
-        <h3>Future Protection Planning</h3>
-        <p>Our goal isn't just to solve today's problem — we help you make decisions that protect your financial future and peace of mind long-term.</p>
+      <div class="services-grid reveal d1">
+        <div class="service-card">
+          <div class="service-card-num">01</div>
+          <div class="service-line"></div>
+          <h3>Foreclosure Assistance</h3>
+          <p>Facing foreclosure can feel overwhelming. We help you understand your options — from loan modifications to short sales — to protect your home and credit.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-num">02</div>
+          <div class="service-line"></div>
+          <h3>Distressed Properties</h3>
+          <p>Inherited a property in disrepair? We purchase homes as-is, saving you the cost and stress of repairs or renovations before selling.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-num">03</div>
+          <div class="service-line"></div>
+          <h3>Creative Solutions</h3>
+          <p>Not every situation fits a traditional sale. We offer flexible, customized approaches including lease-options, seller financing, and more.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-num">04</div>
+          <div class="service-line"></div>
+          <h3>Homeowner Counseling</h3>
+          <p>Before making any decision, we sit down with you to understand your situation and lay out all your options — with no pressure and no obligation.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-num">05</div>
+          <div class="service-line"></div>
+          <h3>Short Sale Assistance</h3>
+          <p>When a home's value is less than the mortgage, a short sale may be your best option. We guide you through every step of the process.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-card-num">06</div>
+          <div class="service-line"></div>
+          <h3>Future Protection Planning</h3>
+          <p>Our goal isn't just to solve today's problem — we help you make decisions that protect your financial future and peace of mind long-term.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how" id="how-it-works">
-  <div class="container">
-    <div class="section-label">Simple Process</div>
-    <h2 class="section-title">How It Works</h2>
-    <p class="section-sub">We've designed our process to be as stress-free as possible. Here's what to expect:</p>
-    <div class="how-grid">
-      <div class="step">
-        <div class="step-num">1</div>
+<section class="how" id="process">
+  <div class="section-inner">
+    <div class="how-header">
+      <div class="eyebrow reveal">Simple Process</div>
+      <h2 class="display-heading reveal d1">How It Works</h2>
+      <p class="lead reveal d2">We've designed our process to be as stress-free as possible. Here's what to expect:</p>
+    </div>
+    <div class="how-steps">
+      <div class="step reveal">
+        <div class="step-marker"><span class="step-number">01</span></div>
         <h3>Reach Out</h3>
-        <p>Contact us by phone, email, or the form below. Tell us a little about your situation — everything is confidential.</p>
+        <p>Contact us by phone, email, or the form below. Tell us about your situation — everything is confidential.</p>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="step reveal d1">
+        <div class="step-marker"><span class="step-number">02</span></div>
         <h3>Free Consultation</h3>
-        <p>We schedule a no-pressure consultation to understand your goals, timeline, and the full picture of your property situation.</p>
+        <p>We schedule a no-pressure consultation to understand your goals, timeline, and full picture of your situation.</p>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="step reveal d2">
+        <div class="step-marker"><span class="step-number">03</span></div>
         <h3>Explore Options</h3>
-        <p>We walk you through every available option — with honest pros and cons — so you can make a fully informed decision.</p>
+        <p>We walk you through every available option — with honest pros and cons — so you can make an informed decision.</p>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
+      <div class="step reveal d3">
+        <div class="step-marker"><span class="step-number">04</span></div>
         <h3>Move Forward</h3>
         <p>Once you choose a path, we handle the details and guide you every step of the way to a successful resolution.</p>
       </div>
@@ -596,31 +761,36 @@
 </section>
 
 <!-- WHY US -->
-<section class="why">
-  <div class="container">
-    <div class="section-label">Why Choose Us</div>
-    <h2 class="section-title">Built on Trust, Driven by Results</h2>
-    <p class="section-sub" style="color: rgba(255,255,255,0.65)">Diaz Property Solutions was founded on the belief that every homeowner deserves honest guidance and a fair opportunity to move forward.</p>
-    <div class="why-grid">
-      <div class="why-item">
-        <div class="num">100%</div>
-        <h4>Confidential</h4>
-        <p>Your situation and details stay private throughout our entire process.</p>
+<section class="why" id="about">
+  <div class="section-inner">
+    <div class="why-layout">
+      <div class="why-text">
+        <div class="eyebrow reveal">Why Choose Us</div>
+        <h2 class="display-heading reveal d1">Built on Trust,<br>Driven by Results</h2>
+        <p class="lead reveal d2">Diaz Property Solutions was founded on the belief that every homeowner deserves honest guidance and a fair opportunity to move forward.</p>
+        <a href="#contact" class="btn-gold reveal d3" style="display:inline-flex;">Start the Conversation</a>
       </div>
-      <div class="why-item">
-        <div class="num">$0</div>
-        <h4>No Upfront Fees</h4>
-        <p>Our consultation is completely free with no obligation to proceed.</p>
-      </div>
-      <div class="why-item">
-        <div class="num">Fast</div>
-        <h4>Quick Turnaround</h4>
-        <p>We move at your pace and can close quickly when time is critical.</p>
-      </div>
-      <div class="why-item">
-        <div class="num">As-Is</div>
-        <h4>No Repairs Needed</h4>
-        <p>We buy properties in any condition — no fixes or staging required.</p>
+      <div class="why-stats reveal d1">
+        <div class="stat-block">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Confidential</div>
+          <div class="stat-desc">Your situation stays private throughout our entire process.</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">No Upfront Fees</div>
+          <div class="stat-desc">Our consultation is completely free with no obligation to proceed.</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">Fast</div>
+          <div class="stat-label">Quick Turnaround</div>
+          <div class="stat-desc">We move at your pace and can close quickly when time is critical.</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">As&#8209;Is</div>
+          <div class="stat-label">No Repairs Needed</div>
+          <div class="stat-desc">We buy properties in any condition — no fixes or staging required.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -628,31 +798,37 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="container">
-    <div class="contact-wrap">
-      <div class="contact-info">
-        <div class="section-label">Get In Touch</div>
-        <h2 class="section-title">Start Your Free Consultation Today</h2>
-        <p class="section-sub" style="margin-bottom: 2rem;">There's no pressure and no obligation. Just an honest conversation about your options.</p>
+  <div class="section-inner">
+    <div class="contact-layout">
+      <div class="contact-left">
+        <div class="eyebrow reveal">Get In Touch</div>
+        <h2 class="display-heading reveal d1">Start Your Free<br>Consultation Today</h2>
+        <p class="lead reveal d2">No pressure, no obligation. Just an honest conversation about your options.</p>
 
-        <div class="contact-detail">
-          <div class="icon">📞</div>
+        <div class="contact-item reveal d2">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
           <div>
             <strong>Phone</strong>
-            <a href="tel:+1-800-000-0000">(800) 000-0000</a>
+            <a href="tel:+18000000000">(800) 000-0000</a>
           </div>
         </div>
 
-        <div class="contact-detail">
-          <div class="icon">✉️</div>
+        <div class="contact-item reveal d3">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
           <div>
             <strong>Email</strong>
             <a href="mailto:info@diazpropertysolutions.com">info@diazpropertysolutions.com</a>
           </div>
         </div>
 
-        <div class="contact-detail">
-          <div class="icon">📍</div>
+        <div class="contact-item reveal d4">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
           <div>
             <strong>Service Area</strong>
             <span>Serving homeowners across the region</span>
@@ -660,32 +836,33 @@
         </div>
       </div>
 
-      <div class="contact-form">
-        <h3>Send Us a Message</h3>
+      <div class="contact-form-box reveal d2">
+        <div class="form-title">Send a Message</div>
+        <div class="form-subtitle">We'll respond within one business day.</div>
         <form netlify name="contact" method="POST">
           <input type="hidden" name="form-name" value="contact" />
           <div class="form-row">
-            <div class="form-group">
+            <div class="form-field">
               <label for="first-name">First Name</label>
               <input type="text" id="first-name" name="first-name" placeholder="Jane" required />
             </div>
-            <div class="form-group">
+            <div class="form-field">
               <label for="last-name">Last Name</label>
               <input type="text" id="last-name" name="last-name" placeholder="Smith" required />
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-field">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="jane@example.com" required />
           </div>
-          <div class="form-group">
+          <div class="form-field">
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" />
           </div>
-          <div class="form-group">
+          <div class="form-field">
             <label for="situation">Your Situation</label>
             <select id="situation" name="situation">
-              <option value="">Select one...</option>
+              <option value="">Select one&hellip;</option>
               <option>Facing Foreclosure</option>
               <option>Distressed / As-Is Property</option>
               <option>Inherited Property</option>
@@ -695,9 +872,9 @@
               <option>Other</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-field">
             <label for="message">Tell Us More (Optional)</label>
-            <textarea id="message" name="message" placeholder="Share any details that would help us understand your situation..."></textarea>
+            <textarea id="message" name="message" placeholder="Share any details that would help us understand your situation&hellip;"></textarea>
           </div>
           <button type="submit" class="btn-submit">Send Message &rarr;</button>
         </form>
@@ -708,8 +885,38 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; <script>document.write(new Date().getFullYear())</script> <strong>Diaz Property Solutions</strong>. All rights reserved. &nbsp;|&nbsp; Helping homeowners navigate difficult real estate situations with professionalism, honesty, and compassion.</p>
+  <div class="footer-logo">
+    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions" />
+    <span>Diaz Property Solutions</span>
+  </div>
+  <p class="footer-copy">
+    &copy; <script>document.write(new Date().getFullYear())</script>
+    <strong>Diaz Property Solutions</strong>. All rights reserved.<br>
+    Helping homeowners navigate difficult real estate situations with professionalism, honesty, and compassion.
+  </p>
 </footer>
 
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('main-nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+
+  revealEls.forEach(el => io.observe(el));
+
+  // Immediately reveal hero items with stagger
+  document.querySelectorAll('.hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), 80 + i * 110);
+  });
+</script>
 </body>
 </html>
