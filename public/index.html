@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diaz Property Solutions</title>
+  <meta name="description" content="Diaz Property Solutions helps homeowners navigate difficult real estate situations with professionalism, honesty, and compassion." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2a4a;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --gold: #d97706;
+      --gold-light: #f59e0b;
+      --cream: #fefce8;
+      --gray: #6b7280;
+      --light: #f8fafc;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #1f2937;
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(26, 42, 74, 0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 48px; width: auto;
+      object-fit: contain;
+    }
+
+    .nav-brand {
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+
+    .nav-brand span {
+      display: block;
+      color: var(--gold-light);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #243b6e 60%, #1e3a5f 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-content { position: relative; max-width: 780px; }
+
+    .hero-logo {
+      width: min(280px, 70vw);
+      height: auto;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.3));
+    }
+
+    .hero-tagline {
+      display: inline-block;
+      background: rgba(217, 119, 6, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 580px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 15px rgba(217,119,6,0.4);
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.6); }
+
+    /* TRUST BAR */
+    .trust-bar {
+      background: var(--gold);
+      padding: 1rem 2rem;
+      display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* SECTION COMMON */
+    section { padding: 5rem 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 580px;
+    }
+
+    /* SERVICES */
+    .services { background: var(--light); }
+
+    .services-header { text-align: center; margin-bottom: 3rem; }
+    .services-header .section-sub { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      border-top: 4px solid transparent;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      border-top-color: var(--gold);
+    }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* HOW IT WORKS */
+    .how { background: var(--white); }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .step-num {
+      width: 60px; height: 60px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0 auto 1.25rem;
+      position: relative;
+    }
+
+    .step-num::after {
+      content: '';
+      position: absolute;
+      width: 70px; height: 70px;
+      border: 2px dashed rgba(26,42,74,0.2);
+      border-radius: 50%;
+      top: -5px; left: -5px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .step p { font-size: 0.875rem; color: var(--gray); }
+
+    /* WHY US */
+    .why { background: var(--navy); color: var(--white); }
+
+    .why .section-title { color: var(--white); }
+    .why .section-label { color: var(--gold-light); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .why-item {
+      padding: 1.5rem;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+
+    .why-item .num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .why-item h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 0.4rem;
+    }
+
+    .why-item p { font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+
+    /* CONTACT */
+    .contact { background: var(--light); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .contact-info h2 { margin-bottom: 1rem; }
+
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail .icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--navy);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .contact-detail strong { display: block; color: var(--navy); font-size: 0.85rem; margin-bottom: 0.15rem; }
+    .contact-detail span { color: var(--gray); font-size: 0.9rem; }
+    .contact-detail a { color: var(--blue); text-decoration: none; font-size: 0.9rem; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    .contact-form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+
+    .contact-form h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1rem; }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 7px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #1f2937;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover { background: var(--blue); }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* NAV MOBILE */
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions Logo" />
+    <div class="nav-brand">
+      Diaz Property Solutions
+      <span>Real Estate Solutions</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <img src="images/diaz-ps-logo.png" alt="Diaz Property Solutions" class="hero-logo" />
+    <div class="hero-tagline">Trusted Real Estate Solutions</div>
+    <h1>We Help Homeowners Find a <em>Path Forward</em></h1>
+    <p>Facing foreclosure, a distressed property, or a tough real estate situation? Diaz Property Solutions is here to help — with honesty, professionalism, and compassion.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+      <a href="#services" class="btn-secondary">Explore Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✓ No Obligation Consultation</div>
+  <div class="trust-item">✓ Confidential &amp; Compassionate</div>
+  <div class="trust-item">✓ Creative Real Estate Solutions</div>
+  <div class="trust-item">✓ Experienced Local Professionals</div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Specialized Real Estate Services</h2>
+      <p class="section-sub">We work with homeowners in challenging situations to explore every available option and find the best path forward.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Foreclosure Assistance</h3>
+        <p>Facing foreclosure can feel overwhelming. We help you understand your options — from loan modifications to short sales — to protect your home and credit.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Distressed Properties</h3>
+        <p>Inherited a property in disrepair? We purchase homes as-is, saving you the cost and stress of repairs or renovations before selling.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Creative Real Estate Solutions</h3>
+        <p>Not every situation fits a traditional sale. We offer flexible, customized approaches including lease-options, seller financing, and more.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Homeowner Counseling</h3>
+        <p>Before making any decision, we sit down with you to understand your situation and lay out all your options — with no pressure and no obligation.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Short Sale Assistance</h3>
+        <p>When a home's value is less than the mortgage, a short sale may be your best option. We guide you through every step of the process.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌟</div>
+        <h3>Future Protection Planning</h3>
+        <p>Our goal isn't just to solve today's problem — we help you make decisions that protect your financial future and peace of mind long-term.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="container">
+    <div class="section-label">Simple Process</div>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">We've designed our process to be as stress-free as possible. Here's what to expect:</p>
+    <div class="how-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Reach Out</h3>
+        <p>Contact us by phone, email, or the form below. Tell us a little about your situation — everything is confidential.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Free Consultation</h3>
+        <p>We schedule a no-pressure consultation to understand your goals, timeline, and the full picture of your property situation.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Explore Options</h3>
+        <p>We walk you through every available option — with honest pros and cons — so you can make a fully informed decision.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Move Forward</h3>
+        <p>Once you choose a path, we handle the details and guide you every step of the way to a successful resolution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why">
+  <div class="container">
+    <div class="section-label">Why Choose Us</div>
+    <h2 class="section-title">Built on Trust, Driven by Results</h2>
+    <p class="section-sub" style="color: rgba(255,255,255,0.65)">Diaz Property Solutions was founded on the belief that every homeowner deserves honest guidance and a fair opportunity to move forward.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="num">100%</div>
+        <h4>Confidential</h4>
+        <p>Your situation and details stay private throughout our entire process.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">$0</div>
+        <h4>No Upfront Fees</h4>
+        <p>Our consultation is completely free with no obligation to proceed.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">Fast</div>
+        <h4>Quick Turnaround</h4>
+        <p>We move at your pace and can close quickly when time is critical.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">As-Is</div>
+        <h4>No Repairs Needed</h4>
+        <p>We buy properties in any condition — no fixes or staging required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Start Your Free Consultation Today</h2>
+        <p class="section-sub" style="margin-bottom: 2rem;">There's no pressure and no obligation. Just an honest conversation about your options.</p>
+
+        <div class="contact-detail">
+          <div class="icon">📞</div>
+          <div>
+            <strong>Phone</strong>
+            <a href="tel:+1-800-000-0000">(800) 000-0000</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon">✉️</div>
+          <div>
+            <strong>Email</strong>
+            <a href="mailto:info@diazpropertysolutions.com">info@diazpropertysolutions.com</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="icon">📍</div>
+          <div>
+            <strong>Service Area</strong>
+            <span>Serving homeowners across the region</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form netlify name="contact" method="POST">
+          <input type="hidden" name="form-name" value="contact" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" name="first-name" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" name="last-name" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" />
+          </div>
+          <div class="form-group">
+            <label for="situation">Your Situation</label>
+            <select id="situation" name="situation">
+              <option value="">Select one...</option>
+              <option>Facing Foreclosure</option>
+              <option>Distressed / As-Is Property</option>
+              <option>Inherited Property</option>
+              <option>Divorce / Separation</option>
+              <option>Relocation</option>
+              <option>Behind on Payments</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us More (Optional)</label>
+            <textarea id="message" name="message" placeholder="Share any details that would help us understand your situation..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Send Message &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; <script>document.write(new Date().getFullYear())</script> <strong>Diaz Property Solutions</strong>. All rights reserved. &nbsp;|&nbsp; Helping homeowners navigate difficult real estate situations with professionalism, honesty, and compassion.</p>
+</footer>
+
+</body>
+</html>
