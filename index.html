@@ -3,13 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Diaz Property Solutions helps homeowners explore practical options for difficult real estate situations.">
+    <meta name="theme-color" content="#080b0e">
     <title>Diaz Property Solutions</title>
-</head>
-<body>
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #080b0e;
+            --panel: #10161c;
+            --text: #f4f7f9;
+            --muted: #aab7c2;
+            --accent: #13a9e8;
+            --line: rgba(255, 255, 255, 0.12);
+        }
 
-    <!-- Your website content goes here -->
+        * {
+            box-sizing: border-box;
+        }
 
+        html {
+            min-width: 320px;
+            background: var(--ink);
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text);
+            font-family: "Trebuchet MS", "Gill Sans", sans-serif;
+            background:
+                radial-gradient(circle at 78% 18%, rgba(19, 169, 232, 0.14), transparent 30rem),
+                linear-gradient(135deg, #07090b 0%, #0c1116 55%, #080b0e 100%);
+        }
+
+        main {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(16rem, 0.9fr) minmax(18rem, 1.1fr);
+            align-items: center;
+            width: min(72rem, calc(100% - 3rem));
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 4rem 0;
+            gap: clamp(2rem, 6vw, 6rem);
+        }
+
+        main::before {
+            position: absolute;
+            inset: 8% auto 8% 45%;
+            width: 1px;
+            content: "";
+            background: linear-gradient(transparent, var(--line), transparent);
+        }
+
+        .brand-mark {
+            width: 100%;
+            max-width: 31rem;
+            border-radius: 1.25rem;
+            box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.45);
+            animation: reveal 700ms ease-out both;
+        }
+
+        .content {
+            position: relative;
+            animation: reveal 700ms 120ms ease-out both;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0 0 1.25rem;
+            color: var(--accent);
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 2.5rem;
+            height: 1px;
+            content: "";
+            background: currentColor;
+        }
+
+        h1 {
+            max-width: 10ch;
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3rem, 7vw, 6.6rem);
+            font-weight: 400;
+            line-height: 0.94;
+            letter-spacing: -0.055em;
+        }
+
+        .intro {
+            max-width: 34rem;
+            margin: 2rem 0 0;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+            line-height: 1.75;
+        }
+
+        .prompt {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            color: var(--text);
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .prompt::before {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            content: "";
+            background: var(--accent);
+            box-shadow: 0 0 0 0.3rem rgba(19, 169, 232, 0.12);
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 760px) {
+            main {
+                grid-template-columns: 1fr;
+                width: min(34rem, calc(100% - 2rem));
+                padding: 2rem 0 5rem;
+                gap: 1.5rem;
+            }
+
+            main::before {
+                display: none;
+            }
+
+            .brand-mark {
+                max-width: 23rem;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: clamp(3.25rem, 16vw, 5.2rem);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .brand-mark,
+            .content {
+                animation: none;
+            }
+        }
+    </style>
     <!-- LeadConnector Chat Widget -->
     <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a7bd20665c582bb548473e2" data-source="WEB_USER"></script>
+</head>
+<body>
+    <main>
+        <img class="brand-mark" src="Image%20for%20DIAZ%20PS.png" alt="Diaz Property Solutions logo" width="1254" height="1254">
+        <section class="content" aria-labelledby="page-title">
+            <p class="eyebrow">Real estate guidance</p>
+            <h1 id="page-title">A clear path forward.</h1>
+            <p class="intro">We help homeowners navigate foreclosure, distressed properties, and other difficult real estate situations with practical options, honesty, and compassion.</p>
+            <p class="prompt">Open the chat to tell us about your property</p>
+        </section>
+    </main>
+
 </body>
 </html>
